@@ -8,6 +8,9 @@
     $admin = "";
     $haslo = "";
 
+
+    $connection = pg_connect("host=db dbname=db user=docker password=docker");
+
     $errorMessage = "";
     $successMessage = "";
 
@@ -28,11 +31,39 @@
 
             }
 
+            // add new client to database
+            $sql = "INSERT INTO account_doc (pesel, imie, nazwisko, data_urodzenia, plec, saldo, admin, haslo)".
+                    " VALUES ('$pesel', '$imie', '$nazwisko', '$data_urodzenia', '$plec', '$saldo', '$admin', '$haslo')";
+
+            $result = pg_exec($connection, $sql);
+            //$result = $connection->query($sql);
+
+            if (!$result) {
+                $errorMessage = "Invalid query: ". $connection->error;
+                break;
+
+            }
+
+
+
+            $pesel = "";
+            $imie = "";
+            $nazwisko = "";
+            $data_urodzenia = "";
+            $plec = "";
+            $saldo = "";
+            $admin = "";
+            $haslo = "";
+
+            $successMessage = "New client added successfully.";
+
+            header("Location: index.php");
+            exit;
 
         }   while (false);
 
         // add new client to database
-
+        /*
         $pesel = "";
         $imie = "";
         $nazwisko = "";
@@ -43,7 +74,7 @@
         $haslo = "";
 
         $successMessage = "New client added successfully.";
-
+        */
     }
 
 
@@ -56,6 +87,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Użytkownicy</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
         <div class="container my-5">

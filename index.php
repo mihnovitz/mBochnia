@@ -84,24 +84,26 @@
 					
 					
 					<tr>
-						<td>87050277152</td>
-						<td>Gałązka</td>
-						<td>Zenon</td>
-						<td>02/05/1987</td>
-						<td>M</td>
-						<td>34.10</td>
-						<td>FALSE</td>
-						<td>pierorzek2025</td>
-						<td>
-
+                        <!-- <td>87050277152</td>
+                        <td>Gałązka</td>
+                        <td>Zenon</td>
+                        <td>02/05/1987</td>
+                        <td>M</td>
+                        <td>34.10</td>
+                        <td>FALSE</td>
+                        <td>pierorzek2025</td>
+                        <td>
+                        -->
                             <!-- SPRAWDZ LINK -->
                             <!-- SPRAWDZ LINK -->
                             <!-- SPRAWDZ LINK -->
                             <!-- SPRAWDZ LINK -->
+                            <!--
 							<a class='btn btn-primary btn-sm' href='edit.php'>Edytuj</a>
 							<a class='btn btn-danger btn-sm' href='delete.php'>Usuń Konto</a>
 						
 						</td>
+                        -->
 						
 					</tr>
 					
