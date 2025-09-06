@@ -1,0 +1,106 @@
+/* General page style */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Headings */
+h2 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #0d6efd;
+}
+
+/* Table styling */
+.account_doc {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.account_doc thead {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.account_doc th,
+.account_doc td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+.account_doc tbody tr:nth-child(even) {
+    background-color: #f2f6fc;
+}
+
+.account_doc tbody tr:hover {
+    background-color: #e8f0fe;
+    transition: 0.2s ease-in-out;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+/* New Client button */
+a.btn.btn-primary[role="button"] {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    .account_doc thead {
+        display: none;
+    }
+    .account_doc tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .account_doc td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .account_doc td:last-child {
+        border-bottom: none;
+    }
+}

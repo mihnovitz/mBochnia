@@ -24,9 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pesel = $_GET["pesel"];
 
     $sql = "SELECT * FROM account_doc WHERE pesel = '$pesel'";
+    $result = $connection->query($sql);
+    $row = $result->fetch_assoc();
+    /*
     $result = pg_exec($connection, $sql);
     $row = pg_fetch_assoc($result);
-
+    */
     if (!row) {
         header("Location: index.php");
         exit;
