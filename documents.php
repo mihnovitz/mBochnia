@@ -136,11 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+
 <div class="main-container">
     <nav class="navbar">
         <div class="container-fluid">
             <span class="navbar-text me-auto"><strong>mBochnia</strong> - Panel Użytkownika</span>
             <div class="d-flex">
+                <a class="btn btn-outline-primary me-2" href="announcements.php">Ogłoszenia</a>
+                <a class="btn btn-outline-primary me-2" href="wnioski.php">Wnioski</a>
                 <a class="btn btn-outline-primary me-2" href="index.php">Strona Główna</a>
                 <a class="btn btn-primary" href="logout.php">Wyloguj</a>
             </div>
@@ -153,9 +156,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="sidebar">
             <div class="sidebar-title">Menu</div>
             <div class="menu-buttons">
-                <button class="menu-btn active">Dokumenty</button>
-                <button class="menu-btn">Ogłoszenia</button>
-                <button class="menu-btn">Wnioski</button>
+                <button class="menu-btn" onclick="location.href='documents.php'">Dokumenty</button>
+                <button class="menu-btn" onclick="location.href='announcements.php'">Ogłoszenia</button>
+                <button class="menu-btn" onclick="location.href='wnioski.php'">Wnioski</button>
                 <?php if ($is_admin): ?>
                     <button class="menu-btn" onclick="location.href='admin.php'" style="background-color: #ff5151;">Panel Admina</button>
                 <?php endif; ?>
