@@ -26,11 +26,21 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 ## Database Container Access
 
-In order to enter the database container, use the following command:
-
 ```bash
 sudo docker exec -it postgres psql -U appuser -d appdb
-INSERT INTO users (first_name, last_name, address, phone, email, password, is_admin)
-VALUES ('FIRST_NAME', 'LAST_NAME', 'ADDRESS', 'PHONE_NUMBER', 'EMAIL@BOCHNIA.CITY', crypt('PASSWORD', gen_salt('bf')), TRUE);
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+```
 
+## Creating Admin user
+
+```bash
+INSERT INTO users (first_name, last_name, address, phone, email, password, is_admin)
+```
+```bash
+VALUES ('FIRST_NAME', 'LAST_NAME', 'ADDRESS', 'PHONE_NUMBER', 'EMAIL@BOCHNIA.CITY', crypt('PASSWORD', gen_salt('bf')), TRUE);
+```
+## Following extension must be present in order to add Admin to database
+If it's not included simply execute following query before inserting Admin account to database:  
+
+```bash
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+```
