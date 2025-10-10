@@ -10,8 +10,6 @@ sudo docker exec -it postgres psql -U appuser -d appdb
 
 ```bash
 INSERT INTO users (first_name, last_name, address, phone, email, password, is_admin)
-```
-```bash
 VALUES ('FIRST_NAME', 'LAST_NAME', 'ADDRESS', 'PHONE_NUMBER', 'EMAIL@BOCHNIA.CITY', crypt('PASSWORD', gen_salt('bf')), TRUE);
 ```
 ## Following extension must be present in order to add Admin to database
