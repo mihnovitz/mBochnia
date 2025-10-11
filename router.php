@@ -15,6 +15,7 @@ $routes = [
     'GET' => [
         '/' => fn() => require APP_PATH . '/views/home.php',
         '/login' => 'AuthController@loginForm',
+        '/logout' => 'AuthController@logout',
         '/register' => 'AuthController@registerForm',
         '/feed' => 'FeedController@index',
     ],

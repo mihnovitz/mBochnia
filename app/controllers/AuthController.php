@@ -116,9 +116,15 @@ class AuthController
     
     public function logout()
     {
-        session_destroy();
-        header('Location: /login');
-        exit;
+    	// End session safely
+    	session_unset();
+    	session_destroy();
+
+    	// Optionally start a new one (to allow flash messages later)
+    	session_start();
+
+    	// Render logout confirmation view
+    	require APP_PATH . '/views/logout.php';
     }
     
 }
