@@ -29,4 +29,17 @@ class User
         ");
         return $stmt->execute($data);
     }
+    
+    public function getAll(): array
+    {
+    	$stmt = $this->db->query("SELECT id, first_name, last_name, email, is_admin FROM users ORDER BY id ASC");
+    	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete(int $id): bool
+    {
+    	$stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
+    	return $stmt->execute(['id' => $id]);
+    }
+    
 }

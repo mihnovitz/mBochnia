@@ -8,6 +8,15 @@
     </div>
 <?php endif; ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>mBochnia — News Feed</title>
+</head>
+</body>
+
 <h1>Create an Account</h1>
 
 <form action="/register" method="POST">
@@ -32,3 +41,4 @@
     <button type="submit">Register</button>
 </form>
 
+</body>

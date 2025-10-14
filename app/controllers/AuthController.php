@@ -77,7 +77,7 @@ class AuthController
             require APP_PATH . '/views/register.php';
         }
     }
-    
+    /*
     public function login()
     {
         require_once APP_PATH . '/models/User.php';
@@ -112,7 +112,45 @@ class AuthController
 
         header('Location: /feed');
         exit;
+    }*/
+    
+    public function login()
+{
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($email === '' || $password === '') {
+        echo "Email and password are required.";
+        return;
     }
+
+    require_once APP_PATH . '/models/User.php';
+    $userModel = new User();
+    $user = $userModel->findByEmail($email);
+
+    if (!$user || !password_verify($password, $user['password'])) {
+        echo "Invalid credentials.";
+        return;
+    }
+
+    // ✅ Store user info in session
+    $_SESSION['user'] = [
+        'id' => $user['id'],
+        'email' => $user['email'],
+        'first_name' => $user['first_name'],
+        'last_name' => $user['last_name'],
+        'is_admin' => (bool)$user['is_admin']
+    ];
+
+    // ✅ Redirect based on admin status
+    if ($_SESSION['user']['is_admin']) {
+        header('Location: /admin');
+    } else {
+        header('Location: /feed');
+    }
+
+    exit;
+}
     
     public function logout()
     {

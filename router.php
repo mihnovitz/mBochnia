@@ -18,10 +18,17 @@ $routes = [
         '/logout' => 'AuthController@logout',
         '/register' => 'AuthController@registerForm',
         '/feed' => 'FeedController@index',
+        '/admin/users' => 'AdminController@users',
+        '/admin/posts' => 'AdminController@posts',
+        '/admin' => 'AdminController@index',
     ],
     'POST' => [
         '/login' => 'AuthController@login',
         '/register' => 'AuthController@register',
+        '/admin/users/delete' => 'AdminController@deleteUser',
+        '/admin/posts/delete' => 'AdminController@deletePost',
+        '/admin/posts/create' => 'AdminController@createPost',
+        '/admin/users/create' => 'AdminController@createAdmin',
     ],
 ];
 
