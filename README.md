@@ -1,9 +1,17 @@
+# Building app
+In order to build app, please execute following commands in shell of your choice
+```bash
+docker compose build
+```
+```bash
+docker compose up
+```
 # Database Operations
 
 ## Database Container Access
 
 ```bash
-sudo docker exec -it postgres psql -U appuser -d appdb
+docker exec -it postgres psql -U appuser -d appdb
 ```
 
 ## Creating Admin user
