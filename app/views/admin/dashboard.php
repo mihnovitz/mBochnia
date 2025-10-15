@@ -1,55 +1,81 @@
-<?php
-// app/views/admin/dashboard.php
-?>
+<?php /** @var array $_SESSION */ ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
-    <title>Welcome to mBochnia</title>
+    <title>Admin Dashboard — mBochnia</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
 
-<h1>Admin Dashboard</h1>
+    <header class="header container">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, <strong><?= htmlspecialchars($_SESSION['user']['first_name']) ?></strong>!</p>
+    </header>
 
-<p>Welcome, <strong><?= htmlspecialchars($_SESSION['user']['first_name']) ?></strong>!</p>
+    <main class="container dashboard">
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar">
+            <h2>Navigation</h2>
+            <nav class="admin-nav">
+                <a href="/admin/posts" class="btn btn-primary full-width">📰 Manage Posts</a>
+                <a href="/admin/users" class="btn btn-primary full-width">👥 Manage Users</a>
+            </nav>
+        </aside>
 
-<nav>
-    <ul>
-        <li><a href="/admin/posts">📰 Manage Posts</a></li>
-        <li><a href="/admin/users">👥 Manage Users</a></li>
-    </ul>
-</nav>
+        <!-- Main Content -->
+        <section class="dashboard-content">
+            <!-- Create New Admin Card -->
+            <div class="card">
+                <h2>Create New Admin User</h2>
+                <form method="POST" action="/admin/users/create" class="form">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" required>
+                    </div>
 
-<hr>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" required>
+                    </div>
 
-<h2>Create New Admin User</h2>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
 
-<form method="post" action="/admin/users/create">
-    <label>First Name:</label>
-    <input type="text" name="first_name" required>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
 
-    <label>Last Name:</label>
-    <input type="text" name="last_name" required>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-    <label>Address:</label>
-    <input type="text" name="address" required>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
 
-    <label>Phone:</label>
-    <input type="text" name="phone" required>
+                    <div class="form-actions center">
+                        <button type="submit" class="btn btn-primary">Create Admin</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <div class="container center">
+	    <div class="action-buttons">
+		<a href="/feed" class="btn btn-secondary">Feed</a>
+		<a href="/logout" class="btn btn-light">Logout</a>
+	    </div>
+    </div>
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
 
-    <label>Password:</label>
-    <input type="password" name="password" required>
-
-    <button type="submit">Create Admin</button>
-</form>
-
-<hr>
-
-<p><a href="/feed">← Back to Feed</a> | <a href="/logout">Logout</a></p>
 </body>
+</html>
+

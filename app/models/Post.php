@@ -13,22 +13,6 @@ class Post
         ]);
     }
 
-    /**
-     * Fetch all posts (latest first)
-     */
-     /*
-    public function getAll(): array
-    {
-        $stmt = $this->db->query("
-            SELECT p.id, p.title, p.content, p.created_at,
-                   u.first_name || ' ' || u.last_name AS author_name
-            FROM posts p
-            JOIN users u ON p.author_id = u.id
-            ORDER BY p.created_at DESC
-        ");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    */
     public function getAll(): array
 {
     $stmt = $this->db->query("
@@ -39,10 +23,6 @@ class Post
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-    /**
-     * Create new post
-     */
     public function create(string $title, string $content, int $author_id): bool
     {
         $stmt = $this->db->prepare("
@@ -56,9 +36,6 @@ class Post
         ]);
     }
 
-    /**
-     * Delete post by ID
-     */
     public function delete(int $id): bool
     {
         $stmt = $this->db->prepare("DELETE FROM posts WHERE id = :id");

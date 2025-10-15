@@ -1,59 +1,73 @@
 <?php
-// app/views/admin/users.php
+/** @var array $users */
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
-    <title>Admin Panel — Manage Posts</title>
+    <title>Admin Panel — Manage Users</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-<h1>Manage Users</h1>
 
-<p><a href="/admin">← Back to Dashboard</a></p>
+<header class="header container">
+    <h1>Manage Users</h1>
+</header>
 
-<?php if (!empty($users)): ?>
-    <table border="1" cellpadding="6" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Admin</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= htmlspecialchars($user['id']) ?></td>
-                    <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
-                    <td><?= htmlspecialchars($user['email']) ?></td>
-                    <td><?= $user['is_admin'] ? '✅ Yes' : '❌ No' ?></td>
-                    <td>
-                        <?php if ($user['id'] != $_SESSION['user']['id']): ?>
-                            <form method="post" action="/admin/users/delete" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this user?');">
-                                    Delete
-                                </button>
-                            </form>
-                        <?php else: ?>
-                            <em>You</em>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php else: ?>
-    <p>No users found.</p>
-<?php endif; ?>
+<main class="container">
+    <section class="card">
+        <h2>User List</h2>
 
-<hr>
+        <?php if (!empty($users)): ?>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Admin</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['id']) ?></td>
+                                <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
+                                <td><?= htmlspecialchars($user['email']) ?></td>
+                                <td><?= $user['is_admin'] ? '✅ Yes' : '❌ No' ?></td>
+                                <td>
+                                    <?php if ($user['id'] != $_SESSION['user']['id']): ?>
+                                        <form method="POST" action="/admin/users/delete" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
+                                            <button type="submit" class="btn btn-light btn-small">Delete</button>
+                                        </form>
+                                    <?php else: ?>
+                                        <span class="text-muted">You</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <p class="empty">No users found.</p>
+        <?php endif; ?>
+    </section>
 
-<p><a href="/logout">Logout</a></p>
+    <div class="center">
+        <a href="/admin" class="btn btn-secondary">← Back to Dashboard</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+</main>
+
+<footer class="footer container">
+    <p>&copy; <?= date('Y') ?> mBochnia</p>
+</footer>
+
 </body>
+</html>
+

@@ -42,4 +42,37 @@ class User
     	return $stmt->execute(['id' => $id]);
     }
     
+    public function update(int $id, array $data): void
+{
+    $config = require BASE_PATH . '/config/database.php';
+    $dsn = "pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}";
+    $db = new PDO($dsn, $config['user'], $config['password'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+
+    $fields = [];
+    foreach ($data as $key => $value) {
+        $fields[] = "$key = :$key";
+    }
+
+    $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = :id";
+    $stmt = $db->prepare($sql);
+    $data['id'] = $id;
+    $stmt->execute($data);
+}
+
+public function getById(int $id): ?array
+{
+    $config = require BASE_PATH . '/config/database.php';
+    $dsn = "pgsql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}";
+    $db = new PDO($dsn, $config['user'], $config['password'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+
+    $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+}
+
+    
 }

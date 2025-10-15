@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-// Get current request URI and method
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-// Normalize trailing slashes
 if ($requestUri !== '/' && str_ends_with($requestUri, '/')) {
     $requestUri = rtrim($requestUri, '/');
 }
@@ -14,6 +12,7 @@ if ($requestUri !== '/' && str_ends_with($requestUri, '/')) {
 $routes = [
     'GET' => [
         '/' => fn() => require APP_PATH . '/views/home.php',
+        '/account' => 'AccountController@index',
         '/login' => 'AuthController@loginForm',
         '/logout' => 'AuthController@logout',
         '/register' => 'AuthController@registerForm',
@@ -23,6 +22,7 @@ $routes = [
         '/admin' => 'AdminController@index',
     ],
     'POST' => [
+    	'/account/update' => 'AccountController@update',
         '/login' => 'AuthController@login',
         '/register' => 'AuthController@register',
         '/admin/users/delete' => 'AdminController@deleteUser',
@@ -36,10 +36,8 @@ if (isset($routes[$requestMethod][$requestUri])) {
     $handler = $routes[$requestMethod][$requestUri];
 
     if (is_callable($handler)) {
-        // Case 1: Direct closure
         $handler();
     } elseif (is_string($handler)) {
-        // Case 2: Controller reference, e.g. "AuthController@login"
         [$controllerName, $method] = explode('@', $handler);
         $controllerFile = APP_PATH . '/controllers/' . $controllerName . '.php';
 
@@ -63,7 +61,6 @@ if (isset($routes[$requestMethod][$requestUri])) {
         }
     }
 } else {
-    // No route found → 404
     http_response_code(404);
     require APP_PATH . '/views/404.php';
 }

@@ -4,7 +4,6 @@ class AuthController
 {
     public function registerForm()
     {
-        // Render the registration page
         require APP_PATH . '/views/register.php';
     }
     
@@ -15,14 +14,13 @@ class AuthController
 
     public function register()
     {
-        // Handle form submission
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             echo "Method Not Allowed";
             return;
         }
 
-        // Collect input safely
         $firstName = trim($_POST['first_name'] ?? '');
         $lastName  = trim($_POST['last_name'] ?? '');
         $address   = trim($_POST['address'] ?? '');
@@ -32,34 +30,28 @@ class AuthController
 
         $errors = [];
 
-        // Basic validation
         if ($firstName === '' || $lastName === '' || $address === '' || $phone === '' || $email === '' || $password === '') {
             $errors[] = "All fields are required.";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Invalid email address.";
         }
 
-        // If validation fails, re-render view with errors
         if (!empty($errors)) {
             require APP_PATH . '/views/register.php';
             return;
         }
 
-        // Load User model
         require_once APP_PATH . '/models/User.php';
         $userModel = new User();
 
-        // Check for existing email
         if ($userModel->findByEmail($email)) {
             $errors[] = "Email is already registered.";
             require APP_PATH . '/views/register.php';
             return;
         }
 
-        // Hash password securely
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        // Create user
         $success = $userModel->create([
             'first_name' => $firstName,
             'last_name'  => $lastName,
@@ -77,93 +69,52 @@ class AuthController
             require APP_PATH . '/views/register.php';
         }
     }
-    /*
-    public function login()
-    {
-        require_once APP_PATH . '/models/User.php';
-        $userModel = new User();
-
-        $email = trim($_POST['email'] ?? '');
-        $password = $_POST['password'] ?? '';
-        $errors = [];
-
-        if ($email === '' || $password === '') {
-            $errors[] = "Email and password are required.";
-            require APP_PATH . '/views/login.php';
-            return;
-        }
-
-        $user = $userModel->findByEmail($email);
-
-        if (!$user || !password_verify($password, $user['password'])) {
-            $errors[] = "Invalid email or password.";
-            require APP_PATH . '/views/login.php';
-            return;
-        }
-
-        // Successful login → store user data in session
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'email' => $user['email'],
-            'is_admin' => $user['is_admin'],
-            'first_name' => $user['first_name'],
-            'last_name' => $user['last_name'],
-        ];
-
-        header('Location: /feed');
-        exit;
-    }*/
     
     public function login()
-{
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
-
-    if ($email === '' || $password === '') {
-        echo "Email and password are required.";
-        return;
-    }
-
-    require_once APP_PATH . '/models/User.php';
-    $userModel = new User();
-    $user = $userModel->findByEmail($email);
-
-    if (!$user || !password_verify($password, $user['password'])) {
-        echo "Invalid credentials.";
-        return;
-    }
-
-    // ✅ Store user info in session
-    $_SESSION['user'] = [
-        'id' => $user['id'],
-        'email' => $user['email'],
-        'first_name' => $user['first_name'],
-        'last_name' => $user['last_name'],
-        'is_admin' => (bool)$user['is_admin']
-    ];
-
-    // ✅ Redirect based on admin status
-    if ($_SESSION['user']['is_admin']) {
-        header('Location: /admin');
-    } else {
-        header('Location: /feed');
-    }
-
-    exit;
-}
-    
-    public function logout()
     {
-    	// End session safely
-    	session_unset();
-    	session_destroy();
+	$email = trim($_POST['email'] ?? '');
+	$password = $_POST['password'] ?? '';
 
-    	// Optionally start a new one (to allow flash messages later)
-    	session_start();
+	if ($email === '' || $password === '') {
+		echo "Email and password are required.";
+		return;
+	}
 
-    	// Render logout confirmation view
-    	require APP_PATH . '/views/logout.php';
-    }
+	require_once APP_PATH . '/models/User.php';
+	$userModel = new User();
+	$user = $userModel->findByEmail($email);
+
+	if (!$user || !password_verify($password, $user['password'])) {
+		require __DIR__ . '/../views/invalid_credentials.php';
+		return;
+	}
+
+	$_SESSION['user'] = [
+		'id' => $user['id'],
+		'email' => $user['email'],
+		'first_name' => $user['first_name'],
+		'last_name' => $user['last_name'],
+		'is_admin' => (bool)$user['is_admin']
+	];
+
+	if ($_SESSION['user']['is_admin']) {
+	header('Location: /admin');
+	} else {
+		header('Location: /feed');
+	}
+
+	exit;
+	}
+    
+    	public function logout()
+    	{
+    		session_unset();
+    		session_destroy();
+
+    		session_start();
+
+    		require APP_PATH . '/views/logout.php';
+    	}
     
 }
 

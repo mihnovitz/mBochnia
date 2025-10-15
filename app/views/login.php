@@ -1,8 +1,8 @@
 <?php if (!empty($errors)): ?>
-    <div style="color:red;">
+    <div class="error-messages">
         <ul>
-            <?php foreach ($errors as $e): ?>
-                <li><?= htmlspecialchars($e) ?></li>
+            <?php foreach ($errors as $error): ?>
+                <li><?= htmlspecialchars($error) ?></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -11,21 +11,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
-    <title>mBochnia — News Feed</title>
+    <title>mBochnia — Login</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>Login</h1>
 
-<form action="/login" method="POST">
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+    <main class="container">
+        <h1 class="center">Log in</h1>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+        <form action="/login" method="POST" class="form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-    <button type="submit">Login</button>
-</form>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-actions center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </main>
+
 </body>
+</html>
 

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
     <meta charset="UTF-8">
-    <title>mBochnia — News Feed</title>
+    <title>Logged Out — mBochnia</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
-<h1>You have been logged out</h1>
 
-<p>Your session has ended successfully.</p>
+<div class="container center">
+    <h1>You have been logged out</h1>
+    <p>Your session has ended successfully.</p>
 
-<p>
-    <a href="/login">Click here to log in again</a>
-</p>
+    <div class="action-buttons">
+        <a href="/login" class="btn btn-secondary">Log In Again</a>
+        <a href="/" class="btn btn-light">Return Home</a>
+    </div>
+</div>
+
 </body>
+</html>
 

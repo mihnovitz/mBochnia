@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'host' => 'postgres',    // service name from docker-compose.yml
+    'host' => 'postgres',
     'port' => '5432',
     'dbname' => 'appdb',
     'user' => 'appuser',
