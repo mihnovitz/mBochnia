@@ -12,8 +12,8 @@
     <header class="header">
         <h1>mBochnia — City Feed</h1>
         <div class="nav-buttons">
-            <a href="/account" class="btn btn-light">My Account</a>
-            <a href="/logout" class="btn btn-light">Logout</a>
+            <a href="/account" class="btn btn-light">Konto</a>
+            <a href="/logout" class="btn btn-light">Wyloguj się</a>
         </div>
     </header>
 
@@ -32,7 +32,7 @@
                 </article>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class="empty center">No posts available yet. Please check back later.</p>
+            <p class="empty center">Jeszcze nie ma wpisów. Sprawdź ponownie później.</p>
         <?php endif; ?>
     </main>
 

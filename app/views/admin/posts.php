@@ -3,39 +3,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel — Manage Posts</title>
+    <title>Panel Administratora</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <header class="header container">
-    <h1>Manage Posts</h1>
+    <h1>Zarządzaj postami</h1>
 </header>
 
 <main class="container">
     <!-- Create Post Section -->
     <section class="card">
-        <h2>Create New Post</h2>
+        <h2>Utwórz post</h2>
         <form method="POST" action="/admin/posts/create" class="form">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Tytuł</label>
                 <input type="text" id="title" name="title" required>
             </div>
 
             <div class="form-group">
-                <label for="content">Content</label>
+                <label for="content">Treść</label>
                 <textarea id="content" name="content" rows="6" required></textarea>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Create Post</button>
+                <button type="submit" class="btn btn-primary">Utwórz post</button>
             </div>
         </form>
     </section>
 
     <!-- Existing Posts Section -->
     <section class="card">
-        <h2>Existing Posts</h2>
+        <h2>Istniejący Posts</h2>
 
         <?php if (!empty($posts)): ?>
             <div class="table-wrapper">
@@ -73,7 +73,7 @@
     </section>
 
     <div class="center">
-        <a href="/admin" class="btn btn-secondary">← Back to Dashboard</a>
+        <a href="/admin" class="btn btn-secondary">← Wróć do strony głównej</a>
     </div>
 </main>
 

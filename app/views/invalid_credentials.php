@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Failed — mBochnia</title>
+    <title>Nie udało się zalogować — mBochnia</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <header class="container center">
-    <h1>Login Failed</h1>
+    <h1>Nie udało się zalogować</h1>
 </header>
 
 <main class="container center">
     <div class="card">
-        <h2>Invalid Credentials</h2>
-        <p>The email or password you entered is incorrect. Please try again.</p>
+        <h2>Niepoprawne dane</h2>
+        <p>Wprowadzony e-mail lub hasło jest nieprawidłowe. Spróbuj ponownie</p>
 
         <div class="action-buttons">
-            <a href="/login" class="btn btn-primary">Back to Login</a>
-            <a href="/register" class="btn btn-secondary">Create Account</a>
+            <a href="/login" class="btn btn-primary">Wróć do logowania</a>
+            <a href="/register" class="btn btn-secondary">Utwórz konto</a>
         </div>
     </div>
 </main>

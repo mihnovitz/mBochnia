@@ -4,14 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard — mBochnia</title>
+    <title>Panel Administratora — mBochnia</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
     <header class="header container">
-        <h1>Admin Dashboard</h1>
-        <p>Welcome, <strong><?= htmlspecialchars($_SESSION['user']['first_name']) ?></strong>!</p>
+        <h1>Panel Administratora</h1>
+        <p>Cześć, <strong><?= htmlspecialchars($_SESSION['user']['first_name']) ?></strong>!</p>
     </header>
 
     <main class="container dashboard">
@@ -19,8 +19,8 @@
         <aside class="dashboard-sidebar">
             <h2>Navigation</h2>
             <nav class="admin-nav">
-                <a href="/admin/posts" class="btn btn-primary full-width">📰 Manage Posts</a>
-                <a href="/admin/users" class="btn btn-primary full-width">👥 Manage Users</a>
+                <a href="/admin/posts" class="btn btn-primary full-width">Zarządzaj postami</a>
+                <a href="/admin/users" class="btn btn-primary full-width">Zarządzaj użytkownikami</a>
             </nav>
         </aside>
 
@@ -70,8 +70,8 @@
     
     <div class="container center">
 	    <div class="action-buttons">
-		<a href="/feed" class="btn btn-secondary">Feed</a>
-		<a href="/logout" class="btn btn-light">Logout</a>
+		<a href="/feed" class="btn btn-secondary">Tablica</a>
+		<a href="/logout" class="btn btn-light">Wyloguj się</a>
 	    </div>
     </div>
 

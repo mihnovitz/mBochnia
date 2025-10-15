@@ -4,44 +4,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Account — mBochnia</title>
+    <title>Konto — mBochnia</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
     <header class="header">
-        <h1>My Account</h1>
+        <h1>Konto</h1>
         <div class="nav-buttons">
-            <a href="/feed" class="btn btn-light">Feed</a>
-            <a href="/logout" class="btn btn-light">Logout</a>
+            <a href="/feed" class="btn btn-light">Tablica</a>
+            <a href="/logout" class="btn btn-light">Wyloguj się</a>
         </div>
     </header>
 
     <main class="container">
-        <h2>Account Details</h2>
+        <h2>Szczegóły konta</h2>
 
         <?php if (isset($_GET['updated'])): ?>
-            <p class="success-message center">✅ Account updated successfully!</p>
+            <p class="success-message center">Konto zostało pomyślnie zaktualizowane!</p>
         <?php endif; ?>
 
         <form method="POST" action="/account/update" class="form">
             <div class="form-group">
-                <label for="first_name">First Name:</label>
+                <label for="first_name">Imię:</label>
                 <input type="text" id="first_name" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>" required>
             </div>
 
             <div class="form-group">
-                <label for="last_name">Last Name:</label>
+                <label for="last_name">Nazwisko:</label>
                 <input type="text" id="last_name" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>" required>
             </div>
 
             <div class="form-group">
-                <label for="address">Address:</label>
+                <label for="address">Adres zamieszkania:</label>
                 <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address'] ?? '') ?>">
             </div>
 
             <div class="form-group">
-                <label for="phone">Phone:</label>
+                <label for="phone">Telefom:</label>
                 <input type="text" id="phone" name="phone" value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
             </div>
 
@@ -51,12 +51,12 @@
             </div>
 
             <div class="form-group">
-                <label for="password">New Password (optional):</label>
+                <label for="password">Nowe hasło (opcjonalne):</label>
                 <input type="password" id="password" name="password">
             </div>
 
             <div class="form-actions center">
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
             </div>
         </form>
     </main>
