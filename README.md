@@ -26,3 +26,7 @@ If it's not included simply execute following query before inserting Admin accou
 ```bash
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 ```
+
+![signal-2025-10-15-170352_002](https://github.com/user-attachments/assets/5684c40d-d7b5-4adf-b4ba-9f38b3c6cb7e)
+<img width="1907" height="926" alt="signal-2025-10-15-170407_002" src="https://github.com/user-attachments/assets/865b36fa-7cf9-4300-ae25-b9d6a35e8326" />
+<img width="1907" height="926" alt="signal-2025-10-15-170435_002" src="https://github.com/user-attachments/assets/0d730c6b-ac3b-44d1-9b21-b6ac826938c7" />
